@@ -1,0 +1,21 @@
+<div style="height: 10vh; background: #6a6a6a; padding: 10px">
+	<button style="height: 20px; width: 90px; cursor: pointer; border: 1px solid #E9ECEF; border-radius: 4px" (mousedown)="addItem()" (touchstart)="addItem()">
+            add item
+          </button>
+</div>
+  <div style="height: 90vh;">
+          <gridster [options]="options">
+            <gridster-item [item]="item" *ngFor="let item of dashboard; let i = index" style="border-radius: 4px;"
+              [ngStyle]="{ background: item.backgroundCol }" (dragend)="dragend($event)">
+              <div style="height: 100%; display: flex; flex-direction: column">
+                <div style="height: 30px; width: 100%; cursor: grab; display: flex; align-items: center; justify-content: flex-end">
+                  <button style="height: 20px; width: 21px; margin-right: 4px; cursor: pointer; border: 1px solid #E9ECEF; border-radius: 4px" (mousedown)="minimizeItem($event, item)" (touchstart)="minimizeItem($event, item)">_</button>
+                  <button style="height: 20px; width: 21px; margin-right: 8px; cursor: pointer; border: 1px solid #E9ECEF; border-radius: 4px" (mousedown)="removeItem($event, item)" (touchstart)="removeItem($event, item)">x</button>
+                </div>
+                <div *ngIf="item.rows > 1" style="flex-grow: 1; display: flex; justify-content: center; align-items: center; cursor: grab; border-top: 1px solid #ddd; margin: 0 8px;">
+                  <span style="margin-right: 4px; font-weight: 700">{{ i }}</span>
+                </div>
+              </div>
+            </gridster-item>
+          </gridster>
+</div>
